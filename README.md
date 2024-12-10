@@ -1,9 +1,9 @@
-
+#Requirements for running the edugrader project
 ```
 pip install -r requirements.txt
 
 ```
-
+Follow the commands to create tables and database required for the project.
 ```
 CREATE DATABASE edugrader;
 USE edugrader;
