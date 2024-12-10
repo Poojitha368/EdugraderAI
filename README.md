@@ -1,4 +1,4 @@
-<h1>Requirements for running the edugrader project</h1>
+Requirements for running the edugrader project
 ```
 pip install -r requirements.txt
 
