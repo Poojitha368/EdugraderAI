@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}
+History Page
+{% endblock title %}
+
+{% block body %}
+  <style>
+    .card {
+        height: 200px; /* Set a fixed height for all cards */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden; /* Ensure content does not overflow */
+        position: relative; /* Position relative to use absolute positioning for the button */
+    }
+
+    .card-body {
+        flex: 1; /* Allow the card body to take up available space */
+        overflow-y: auto; /* Add vertical scrollbar if needed */
+    }
+
+    .delete-button {
+        background-color: #dc3545; /* Bootstrap danger color */
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        margin-top: 10px; /* Space between the card content and the button */
+    }
+
+    .delete-button:hover {
+        background-color: #c82333;
+    }
+  </style>
+
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">History</h1>
+    {% if history %}
+      {% for row in history %}
+      <div class="row mb-3 align-items-start">
+        <!-- Card 1 -->
+        <div class="col-md-2">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Question</h5>
+              <p class="card-text">{{ row[0] }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Answer</h5>
+              <p class="card-text">{{ row[1] }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-md-2">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Marks</h5>
+              <p class="card-text">{{ row[2] }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Feedback</h5>
+              <p class="card-text">{{ row[3] }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- Delete Button -->
+        <div class="col-md-1">
+          <form action="{{ url_for('delete', qno=row[4]) }}" method="post">
+            <button type="submit" class="delete-button">Delete</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="alert alert-info" role="alert">
+        No history yet.
+      </div>
+    {% endif %}
+  </div>
+{% endblock body %}

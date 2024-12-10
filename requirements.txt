@@ -1,0 +1,4 @@
+Flask==2.3.3
+Flask-MySQLdb==1.0.1
+Flask-Session==0.4.0
+google-generativeai==1.0.0

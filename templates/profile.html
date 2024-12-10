@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+profile Page
+{% endblock title %}
+
+
+{% block body %}
+
+<div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header text-center bg-primary text-white">
+                        <h2>User Profile</h2>
+                    </div>
+                    <div class="card-body text-center">
+                        <img src="../static/images/profile.png" alt="Profile Picture" class="rounded-circle mb-3" width="150" height="150">
+                        <h4 class="card-title">{{ username }}</h4>
+                        <p class="card-text">{{ email }}</p>
+                    </div>
+                </div>
+                
+                <div class="card mt-4">
+                    <div class="card-header bg-secondary text-white">
+                        <h5>Edit Profile</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="/update_profile" method="post">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="name" value="{{ username }}" name="name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" value="{{ email }}" name="email">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Logout Button -->
+                <div class="text-center mt-4">
+                    <a href="/logout" class="btn btn-danger">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block body %}
+<style>
+    .move-up {
+    margin-top: -20px; /* Adjust this value to move the text up */
+}
+
+</style>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 d-flex flex-column justify-content-center align-items-start">
+      <h1 class="display-3 move-up">Welcome to EduGrader</h1> <!-- Larger font size with move-up class -->
+
+      <p class="lead">Transform your learning and grading experience with EduGrader!<br>For more personalized learning and reducing time and effort of grading.</p>
+      
+      <a href="/register" class="btn btn-primary mt-3">Sign Up Today</a> <!-- Small button -->
+    </div>
+    <div class="col-md-4 d-flex justify-content-center align-items-center">
+      <img src="../static/images/home image.jpg" alt="Description of Image" class="img-fluid" style="max-width: 600px; margin-top: 40px;">
+    </div>
+  </div>
+</div>
+{% endblock %}

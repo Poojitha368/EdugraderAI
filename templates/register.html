@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Register Page
+{% endblock title %}
+
+{% block body %}
+
+<div class="container d-flex justify-content-center align-items-start min-vh-100 pt-4">
+  <div class="col-md-4 col-lg-3 mt-5">
+      <h1 class="text-center mb-4">Register</h1>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <div id="flash-message" class="alert alert-{{ messages[0][0] }}">
+          {{ messages[0][1] }}
+      </div>
+      {% endif %}
+      {% endwith %}
+      <form action="/register" method="post">
+          <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Username</label>
+              <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+        </div>
+          <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" name="password" class="form-control" id="exampleInputPassword1" required>
+          </div>
+          <input type="submit" value="Register" class="btn btn-primary w-100">
+          <p class="text-center mt-3">Already have an account? <a href="/login">login here</a></p>
+      </form>
+  </div>
+</div>
+
+
+{% endblock body %}
