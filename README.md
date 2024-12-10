@@ -29,5 +29,7 @@ CREATE TABLE history (
 
 
 <h1>Project overview</h1>
-![image](https://github.com/user-attachments/assets/c663ef29-99a3-474c-b8b1-8eeebcea3b30)
+
+![image](https://github.com/user-attachments/assets/9edb70b5-1457-4812-a4dd-8e24534c542f)
+
 
