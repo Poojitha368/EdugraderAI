@@ -4,6 +4,7 @@ pip install -r requirements.txt
 
 ```
 
+```
 CREATE DATABASE edugrader;
 USE edugrader;
 
@@ -24,4 +25,4 @@ CREATE TABLE history (
     user_id INT,
     FOREIGN KEY (user_id) REFERENCES user(id)  -- foreign key constraint
 );
-
+```
