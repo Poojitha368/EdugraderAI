@@ -26,3 +26,8 @@ CREATE TABLE history (
     FOREIGN KEY (user_id) REFERENCES user(id)  -- foreign key constraint
 );
 ```
+
+
+<h1>Project overview</h1>
+![image](https://github.com/user-attachments/assets/c663ef29-99a3-474c-b8b1-8eeebcea3b30)
+
