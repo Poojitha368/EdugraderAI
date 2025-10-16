@@ -1,24 +1,61 @@
 from flask import Flask,render_template,session,request,flash,redirect,url_for
 from flask_mysqldb import MySQL
 from flask_session import Session
+from ollamamodel import FindLLMResponse
 # changes 
-import google.generativeai as genai
 import json
 
-# Configure Gemini API # changes
+# gemini code 
+'''# Configure Gemini API # changes
+import google.generativeai as genai
 genai.configure(api_key="AIzaSyB7IZ1lx8TuJ8KKyLs3XK7wvBDIr9PdTwU")
-model = genai.GenerativeModel('gemini-1.5-flash')
+# model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel("models/gemini-1.5-flash")'''
+
+# ollama code
+def get_ollama_grade_feedback(question, paragraph):
+    input_prompt = f"""
+            You are an expert grader. Please evaluate the following answer based on the given question. 
+            Provide a grade (out of 10) and give constructive feedback in 50 words.
+
+            Question: {question}
+
+            Answer: {paragraph}
+            """
+    response = FindLLMResponse(input_prompt)
+    
+    # Debug log for the raw LLM response
+    print("LLM Response:", response)
+    
+    # Attempt to parse the grade and feedback
+    try:
+        grade_start = response.find("Grade: ") + len("Grade: ")
+        grade_end = response.find("/10", grade_start)
+        marks = response[grade_start:grade_end].strip()
+        
+        feedback_start = response.find("Feedback:", grade_end)
+        if feedback_start != -1:
+            feedback_start += len("Feedback:")
+            feedback = response[feedback_start:].strip()
+        else:
+            # fallback if "Feedback:" is not in response
+            feedback = response.strip()
+        
+        # Ensure marks is a string or convert to int if needed
+        if not marks:
+            marks = "N/A"
+
+        return marks, feedback
+    
+    except Exception as e:
+        print(f"Error parsing response: {e}")
+        # fallback: return None for marks and full response as feedback
+        return None, response
+    
 
 #changes
-def get_gemini_grade_feedback(question, paragraph):
-    input_prompt = f'''
-    You are an expert grader. Please evaluate the following answer based on the given question. 
-    Provide a grade (out of 10) and give constructive feedback in 50 words.
+'''def get_gemini_grade_feedback(question, paragraph):
     
-    Question: {question}
-    
-    Answer: {paragraph}
-    '''
     response = model.generate_content([input_prompt])
     
     # Log the raw response for debugging
@@ -40,7 +77,7 @@ def get_gemini_grade_feedback(question, paragraph):
         return grade, feedback
     except Exception as e:
         print(f"Error extracting grade and feedback: {str(e)}")
-        return None, "Error parsing the response"
+        return None, "Error parsing the response"''     '''
 
 
 app = Flask(__name__)
@@ -121,7 +158,7 @@ def grading():
 
         id = session.get("id")
         cur = mysql.connection.cursor()
-        marks, feedback = get_gemini_grade_feedback(question, answer)
+        marks, feedback = get_ollama_grade_feedback(question, answer)
         print("Marks:", marks)  # Debugging statement
         print("Feedback:", feedback)  # Debugging statement
         
