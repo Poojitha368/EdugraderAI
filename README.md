@@ -1,3 +1,4 @@
+![image](https://github.com/user-attachments/assets/9edb70b5-1457-4812-a4dd-8e24534c542f)
 Requirements for running the edugrader project
 ```
 pip install -r requirements.txt
@@ -30,6 +31,5 @@ CREATE TABLE history (
 
 <h1>Project overview</h1>
 
-![image](https://github.com/user-attachments/assets/9edb70b5-1457-4812-a4dd-8e24534c542f)
 
 
