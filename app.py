@@ -91,9 +91,9 @@ Session(app)
 
 
 # Configure MySQL
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'password'
+app.config['MYSQL_HOST'] = 'ls-8351950865b689bfff6492a24882a37e8a8e80df.cgd4aj6sswr0.us-east-1.rds.amazonaws.com'
+app.config['MYSQL_USER'] = 'poojitha'
+app.config['MYSQL_PASSWORD'] = 'p@ssw0rd'
 app.config['MYSQL_DB'] = 'edugrader'
 
 mysql = MySQL(app)
